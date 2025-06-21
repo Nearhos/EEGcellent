@@ -29,7 +29,12 @@ class AnalysisSheetContent extends StatelessWidget {
                 DataPoint(time: 1641031200000 + 120000, stress: 4),
                 DataPoint(time: 1641031200000 + 180000, stress: 2),
                 DataPoint(time: 1641031200000 + 320000, stress: 5),
-                DataPoint(time: 1641031200000 + 400000, stress: 10),
+                DataPoint(time: 1641031200000 + 400000, stress: 9),
+                DataPoint(time: 1641031200000 + 480000, stress: 8),
+                DataPoint(time: 1641031200000 + 560000, stress: 9),
+                DataPoint(time: 1641031200000 + 640000, stress: 7),
+                DataPoint(time: 1641031200000 + 720000, stress: 9),
+                DataPoint(time: 1641031200000 + 840000, stress: 10),
               ]),
             ),
           )

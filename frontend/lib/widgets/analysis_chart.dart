@@ -29,10 +29,23 @@ class AnalysisChart extends StatelessWidget {
                       ),
                     )
                     .toList(),
-            isCurved: true,
             isStrokeCapRound: true,
-            barWidth: 8,
-            shadow: Shadow(color: Theme.of(context).colorScheme.secondary.withAlpha(255), blurRadius: 30.0),
+            barWidth: 6,
+            belowBarData: BarAreaData(
+              show: true,
+              gradient: LinearGradient(
+                colors: [
+                  Theme.of(
+                    context,
+                  ).colorScheme.secondary.withAlpha(192),
+                  Theme.of(
+                    context,
+                  ).colorScheme.secondary.withAlpha(0),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
             color: Theme.of(context).colorScheme.secondary,
             dotData: const FlDotData(show: false),
           ),
@@ -86,7 +99,9 @@ class AnalysisChart extends StatelessWidget {
               reservedSize: 40,
               getTitlesWidget: (y, titleMeta) {
                 return Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
+                  padding: const EdgeInsets.only(
+                    right: 8.0,
+                  ),
                   child: Text(
                     y.toString(),
                     style: Theme.of(
@@ -107,11 +122,13 @@ class AnalysisChart extends StatelessWidget {
           show: false,
           border: Border(
             bottom: BorderSide(
-              color: Theme.of(context).colorScheme.onSurface,
+              color:
+                  Theme.of(context).colorScheme.onSurface,
               width: 1.0,
             ),
             left: BorderSide(
-              color: Theme.of(context).colorScheme.onSurface,
+              color:
+                  Theme.of(context).colorScheme.onSurface,
               width: 1.0,
             ),
           ),
@@ -128,11 +145,33 @@ class AnalysisChart extends StatelessWidget {
           //   return value % 2 == 0;
           // },
         ),
+        lineTouchData: LineTouchData(
+          touchTooltipData: LineTouchTooltipData(
+            getTooltipItems: (touchedSpots) {
+              return touchedSpots.map((spot) {
+                return LineTooltipItem(
+                  spot.y.toString(),
+                  Theme.of(
+                    context,
+                  ).textTheme.labelLarge!.copyWith(
+                    color:
+                        Theme.of(
+                          context,
+                        ).colorScheme.surface,
+                  ),
+                );
+              }).toList();
+            },
+            getTooltipColor:
+                (touchedSpot) =>
+                    Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
         minY: 0,
         maxY: maxStressLevel.toDouble(),
       ),
-      duration: Duration(milliseconds: 150), // Optional
-      curve: Curves.linear, // Optional
+      duration: Duration(milliseconds: 150),
+      curve: Curves.linear,
     );
   }
 }
