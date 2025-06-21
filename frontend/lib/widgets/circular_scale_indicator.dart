@@ -15,13 +15,13 @@ class CircularScaleIndicator extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: AspectRatio(
-        aspectRatio: 1.0,
+        aspectRatio: 1.15,
         child: Stack(
           children: [
             Container(
               alignment: Alignment.center,
               child: Padding(
-                padding: EdgeInsets.all(64.0),
+                padding: EdgeInsets.all(48.0),
                 child: AspectRatio(
                   aspectRatio: 1.0,
                   child: SizedBox(

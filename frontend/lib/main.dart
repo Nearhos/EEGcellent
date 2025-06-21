@@ -9,9 +9,9 @@ final colorScheme = ColorScheme.fromSeed(
   primaryContainer: const Color.fromARGB(255, 96, 171, 211),
   onPrimaryContainer: const Color.fromARGB(
     255,
-    232,
-    237,
-    239,
+    246,
+    248,
+    249,
   ),
   surface: const Color.fromARGB(255, 232, 237, 239),
   onSurface: const Color.fromARGB(255, 34, 56, 67),

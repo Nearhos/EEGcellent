@@ -1,5 +1,7 @@
+import 'package:eegcellent/widgets/analysis_sheet_content.dart';
 import 'package:eegcellent/widgets/circular_scale_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:sheet/sheet.dart';
 
 class TrackingScreen extends StatelessWidget {
   const TrackingScreen({super.key});
@@ -11,7 +13,7 @@ class TrackingScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 32.0),
+            padding: const EdgeInsets.only(top: 40.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -29,6 +31,7 @@ class TrackingScreen extends StatelessWidget {
                   style: Theme.of(
                     context,
                   ).textTheme.headlineSmall!.copyWith(
+                    fontWeight: FontWeight.normal,
                     color:
                         Theme.of(
                           context,
@@ -42,6 +45,16 @@ class TrackingScreen extends StatelessWidget {
             maxStressLevel: 10,
             stressLevel: 7,
           ),
+          Spacer(),
+          SizedBox(
+            height: 320.0,
+            width: double.infinity,
+            child: Sheet(
+              fit: SheetFit.expand,
+              initialExtent: 800,
+              child: const AnalysisSheetContent()
+            ),
+          )
         ],
       ),
     );
