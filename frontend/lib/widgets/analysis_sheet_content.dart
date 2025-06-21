@@ -3,7 +3,21 @@ import 'package:eegcellent/widgets/analysis_chart.dart';
 import 'package:flutter/material.dart';
 
 class AnalysisSheetContent extends StatelessWidget {
-  const AnalysisSheetContent({super.key});
+  final List<DataPoint>? data;
+  const AnalysisSheetContent({
+    super.key,
+    required this.data,
+  });
+
+  Widget generateContent() {
+    if (data == null) {
+      return LoadingContent();
+    } else if (data!.isEmpty) {
+      return NoDataContent();
+    } else {
+      return AnalysisChart(maxStressLevel: 10, data: data!);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +28,10 @@ class AnalysisSheetContent extends StatelessWidget {
           topLeft: Radius.circular(16.0),
           topRight: Radius.circular(16.0),
         ),
-        color: Theme.of(context).colorScheme.onPrimaryContainer,
+        color:
+            Theme.of(
+              context,
+            ).colorScheme.onPrimaryContainer,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -23,23 +40,41 @@ class AnalysisSheetContent extends StatelessWidget {
             width: double.infinity,
             height: 240,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0),
-              child: AnalysisChart(maxStressLevel: 10, data: [
-                DataPoint(time: 1641031200000 + 60000, stress: 8),
-                DataPoint(time: 1641031200000 + 120000, stress: 4),
-                DataPoint(time: 1641031200000 + 180000, stress: 2),
-                DataPoint(time: 1641031200000 + 320000, stress: 5),
-                DataPoint(time: 1641031200000 + 400000, stress: 9),
-                DataPoint(time: 1641031200000 + 480000, stress: 8),
-                DataPoint(time: 1641031200000 + 560000, stress: 9),
-                DataPoint(time: 1641031200000 + 640000, stress: 7),
-                DataPoint(time: 1641031200000 + 720000, stress: 9),
-                DataPoint(time: 1641031200000 + 840000, stress: 10),
-              ]),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 32.0,
+              ),
+              child: generateContent(),
             ),
-          )
+          ),
         ],
       ),
     );
+  }
+}
+
+class NoDataContent extends StatelessWidget {
+  const NoDataContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        "No data.",
+        style: Theme.of(
+          context,
+        ).textTheme.headlineSmall!.copyWith(
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+      ),
+    );
+  }
+}
+
+class LoadingContent extends StatelessWidget {
+  const LoadingContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: CircularProgressIndicator());
   }
 }

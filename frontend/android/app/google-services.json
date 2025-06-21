@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "545817570266",
+    "project_id": "eegcellent",
+    "storage_bucket": "eegcellent.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545817570266:android:bd4a0a3ac194c3aeac2ee3",
+        "android_client_info": {
+          "package_name": "com.example.eegcellent"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrQtqqhD-Ia4JoLBja6JLP-vsLw-eYpzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

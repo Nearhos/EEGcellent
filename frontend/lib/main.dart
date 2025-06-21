@@ -1,6 +1,9 @@
 import 'package:eegcellent/screens/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 final colorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 96, 171, 211),
@@ -17,10 +20,59 @@ final colorScheme = ColorScheme.fromSeed(
   onSurface: const Color.fromARGB(255, 34, 56, 67),
   surfaceContainer: const Color.fromARGB(255, 55, 90, 108),
   secondary: const Color.fromARGB(255, 53, 118, 150),
+  error: const Color.fromARGB(255, 53, 118, 150),
   brightness: Brightness.light,
 );
 
-void main() {
+FlutterLocalNotificationsPlugin
+flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin
+      >()!
+      .requestNotificationsPermission();
+  // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+  const AndroidInitializationSettings
+  initializationSettingsAndroid =
+      AndroidInitializationSettings('app_icon');
+  final DarwinInitializationSettings
+  initializationSettingsDarwin =
+      DarwinInitializationSettings();
+  final LinuxInitializationSettings
+  initializationSettingsLinux = LinuxInitializationSettings(
+    defaultActionName: 'Open notification',
+  );
+  final WindowsInitializationSettings
+  initializationSettingsWindows =
+      WindowsInitializationSettings(
+        appName: 'EEGcellent',
+        appUserModelId: 'com.eegcellent.eegcellent',
+        // Search online for GUID generators to make your own
+        guid: '793fb8ed-0807-4324-835f-56b93aeece90',
+      );
+  final InitializationSettings initializationSettings =
+      InitializationSettings(
+        android: initializationSettingsAndroid,
+        iOS: initializationSettingsDarwin,
+        macOS: initializationSettingsDarwin,
+        linux: initializationSettingsLinux,
+        windows: initializationSettingsWindows,
+      );
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+    onDidReceiveNotificationResponse: (
+      NotificationResponse notificationResponse,
+    ) async {
+      print(notificationResponse);
+    },
+  );
   runApp(const MyApp());
 }
 

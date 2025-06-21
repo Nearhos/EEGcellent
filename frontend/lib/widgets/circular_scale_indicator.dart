@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CircularScaleIndicator extends StatelessWidget {
-  final int maxStressLevel;
-  final int stressLevel;
+  final double maxStressLevel;
+  final double? stressLevel;
+  final String label;
 
   const CircularScaleIndicator({
     super.key,
     required this.stressLevel,
     required this.maxStressLevel,
+    this.label = "STRESS",
   });
 
   @override
@@ -26,18 +28,42 @@ class CircularScaleIndicator extends StatelessWidget {
                   aspectRatio: 1.0,
                   child: SizedBox(
                     width: double.infinity,
-                    child: CircularProgressIndicator(
-                      value: stressLevel / maxStressLevel,
-                      strokeWidth: 24.0,
-                      strokeCap: StrokeCap.round,
-                      backgroundColor:
-                          Theme.of(
-                            context,
-                          ).colorScheme.primary,
-                      color:
-                          Theme.of(
-                            context,
-                          ).colorScheme.secondary,
+                    child: TweenAnimationBuilder<double>(
+                      tween: Tween<double>(
+                        begin: 0.0,
+                        end:
+                            stressLevel == null
+                                ? 0.0
+                                : stressLevel! /
+                                    maxStressLevel,
+                      ),
+                      duration: Duration(
+                        milliseconds:
+                            stressLevel == null
+                                ? 0
+                                : (800.0 *
+                                        stressLevel! /
+                                        maxStressLevel)
+                                    .toInt(),
+                      ),
+                      builder:
+                          (context, value, _) =>
+                              CircularProgressIndicator(
+                                value:
+                                    stressLevel == null
+                                        ? 0
+                                        : value,
+                                strokeWidth: 24.0,
+                                strokeCap: StrokeCap.round,
+                                backgroundColor:
+                                    Theme.of(
+                                      context,
+                                    ).colorScheme.primary,
+                                color:
+                                    Theme.of(
+                                      context,
+                                    ).colorScheme.secondary,
+                              ),
                     ),
                   ),
                 ),
@@ -48,9 +74,11 @@ class CircularScaleIndicator extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(height: 25.0,),
+                  SizedBox(height: 25.0),
                   Text(
-                    stressLevel.toString(),
+                    stressLevel == null
+                        ? '-'
+                        : stressLevel!.toStringAsFixed(1),
                     style: Theme.of(
                       context,
                     ).textTheme.headlineLarge!.copyWith(
@@ -63,7 +91,7 @@ class CircularScaleIndicator extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "STRESS",
+                    label,
                     style: Theme.of(
                       context,
                     ).textTheme.titleLarge!.copyWith(

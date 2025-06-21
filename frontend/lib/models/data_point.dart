@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class DataPoint {
-  final int time;
+  final Timestamp timestamp;
   final double stress;
 
   const DataPoint({
-    required this.time,
+    required this.timestamp,
     required this.stress,
   });
 }

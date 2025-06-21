@@ -39,6 +39,9 @@ dependencies:
   sheet: ^1.0.0
   fl_chart: ^1.0.0
   intl: ^0.20.2
+  firebase_core: ^3.14.0
+  cloud_firestore: ^5.6.9
+  flutter_local_notifications: ^19.2.1
 
 dev_dependencies:
   flutter_test:
