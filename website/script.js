@@ -115,30 +115,34 @@ document.addEventListener('DOMContentLoaded', function() {
     function animateStressBar() {
         const stressFill = document.getElementById('stressFill');
         const stressPercentage = document.getElementById('stressPercentage');
-        
-        let currentStress = 23;
-        const targetStress = 23;
-        
-        const animate = () => {
-            if (currentStress < targetStress) {
-                currentStress += 1;
-            } else if (currentStress > targetStress) {
-                currentStress -= 1;
+
+        if (!stressFill || !stressPercentage) return;
+
+        let currentStress = 50; // Starting point
+        let targetStress = Math.random() * 70 + 15; // Initial random target (15-85)
+
+        const updateBar = () => {
+            // Move current stress towards target
+            if (Math.abs(currentStress - targetStress) < 0.5) {
+                // When close to the target, get a new random target
+                targetStress = Math.random() * 70 + 15; // New target (15-85)
+            } else {
+                // Smoothly ease towards the target
+                currentStress += (targetStress - currentStress) * 0.01;
             }
-            
+
+            // Update the UI
             stressFill.style.width = currentStress + '%';
-            stressPercentage.textContent = currentStress + '%';
-            
-            if (currentStress !== targetStress) {
-                requestAnimationFrame(animate);
-            }
+            stressPercentage.textContent = Math.round(currentStress) + '%';
+
+            requestAnimationFrame(updateBar);
         };
-        
-        animate();
+
+        updateBar();
     }
 
     // Start animation when page loads
-    setTimeout(animateStressBar, 1000);
+    animateStressBar();
 
     // Intersection Observer for animations
     const observerOptions = {

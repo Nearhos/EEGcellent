@@ -813,7 +813,7 @@ section {
 }
 
 .eeg-visualization img {
-    max-width: 80%;
+    max-width: 100%;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.1);
 } 
