@@ -1,14 +1,14 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:eegcellent/firebase.dart';
-import 'package:eegcellent/main.dart';
-import 'package:eegcellent/models/data_point.dart';
-import 'package:eegcellent/models/day_progress_data.dart';
-import 'package:eegcellent/widgets/analysis_sheet_content.dart';
-import 'package:eegcellent/widgets/circular_scale_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:gauge/firebase.dart';
+import 'package:gauge/main.dart';
+import 'package:gauge/models/data_point.dart';
+import 'package:gauge/models/day_progress_data.dart';
+import 'package:gauge/widgets/analysis_sheet_content.dart';
+import 'package:gauge/widgets/circular_scale_indicator.dart';
 import 'package:sheet/sheet.dart';
 
 class TrackingScreen extends StatefulWidget {
@@ -39,7 +39,7 @@ class _TrackingScreenState extends State<TrackingScreen> {
           android: androidNotificationDetails,
         );
     await flutterLocalNotificationsPlugin.show(
-      01,
+      2,
       'Take a break!',
       'Your stress level is getting up there.',
       notificationDetails,
@@ -59,6 +59,7 @@ class _TrackingScreenState extends State<TrackingScreen> {
               stress: data["stress"],
             );
           }).toList();
+      print(data.size);
 
       final averageScore =
           await db
@@ -68,7 +69,6 @@ class _TrackingScreenState extends State<TrackingScreen> {
                 isGreaterThanOrEqualTo: datetime.subtract(
                   const Duration(minutes: 15),
                 ),
-                isLessThan: datetime,
               )
               .aggregate(average("stress"))
               .get();
@@ -108,7 +108,6 @@ class _TrackingScreenState extends State<TrackingScreen> {
               isGreaterThanOrEqualTo: datetime.subtract(
                 const Duration(hours: 1),
               ),
-              isLessThan: datetime,
             )
             .orderBy("timestamp")
             .snapshots();
@@ -122,7 +121,7 @@ class _TrackingScreenState extends State<TrackingScreen> {
   void initState() {
     super.initState();
 
-    DateTime now = DateTime.now().toLocal();
+    DateTime now = DateTime.now().toUtc();
 
     startProgressListener(now);
   }
@@ -144,7 +143,6 @@ class _TrackingScreenState extends State<TrackingScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20.0),
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -152,7 +150,7 @@ class _TrackingScreenState extends State<TrackingScreen> {
                     "Welcome, Harry",
                     style: Theme.of(
                       context,
-                    ).textTheme.headlineMedium!.copyWith(
+                    ).textTheme.headlineSmall!.copyWith(
                       color:
                           Theme.of(
                             context,
@@ -163,7 +161,7 @@ class _TrackingScreenState extends State<TrackingScreen> {
                     "Let's check your stress",
                     style: Theme.of(
                       context,
-                    ).textTheme.headlineSmall!.copyWith(
+                    ).textTheme.bodyLarge!.copyWith(
                       fontWeight: FontWeight.normal,
                       color:
                           Theme.of(
@@ -183,8 +181,9 @@ class _TrackingScreenState extends State<TrackingScreen> {
             alignment: Alignment.bottomCenter,
             child: Sheet(
               fit: SheetFit.expand,
-              initialExtent: 320,
-              minExtent: 320,
+              initialExtent: 310,
+              minExtent: 310,
+              maxExtent: 310,
               child: AnalysisSheetContent(
                 data: _data?.data,
               ),

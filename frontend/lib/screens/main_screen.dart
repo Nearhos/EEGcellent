@@ -1,7 +1,6 @@
-import 'package:eegcellent/screens/profile_screen.dart';
-import 'package:eegcellent/screens/progress_screen.dart';
-import 'package:eegcellent/screens/tracking_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:gauge/screens/progress_screen.dart';
+import 'package:gauge/screens/tracking_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -16,7 +15,6 @@ class _MainScreenState extends State<MainScreen> {
   static const List<Widget> _screens = [
     TrackingScreen(),
     ProgressScreen(),
-    ProfileScreen(),
   ];
 
   @override
@@ -33,10 +31,6 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.assignment),
             label: "Progress",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profile",
-          ),
         ],
         onTap: (value) {
           setState(() {
@@ -47,7 +41,9 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor:
             Theme.of(context).colorScheme.primary,
         selectedItemColor:
-            Theme.of(context).colorScheme.onPrimaryContainer,
+            Theme.of(
+              context,
+            ).colorScheme.onPrimaryContainer,
         unselectedItemColor:
             Theme.of(context).colorScheme.onPrimary,
       ),

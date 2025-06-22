@@ -1,6 +1,6 @@
 {
-    "name": "eegcellent",
-    "short_name": "eegcellent",
+    "name": "gauge",
+    "short_name": "gauge",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

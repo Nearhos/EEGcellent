@@ -2,13 +2,13 @@ import 'dart:collection';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:eegcellent/firebase.dart';
-import 'package:eegcellent/models/data_point.dart';
-import 'package:eegcellent/models/date.dart';
-import 'package:eegcellent/models/day_progress_data.dart';
-import 'package:eegcellent/widgets/analysis_sheet_content.dart';
-import 'package:eegcellent/widgets/circular_scale_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:gauge/firebase.dart';
+import 'package:gauge/models/data_point.dart';
+import 'package:gauge/models/date.dart';
+import 'package:gauge/models/day_progress_data.dart';
+import 'package:gauge/widgets/analysis_sheet_content.dart';
+import 'package:gauge/widgets/circular_scale_indicator.dart';
 import 'package:intl/intl.dart';
 import 'package:sheet/sheet.dart';
 
@@ -62,6 +62,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
             )
             .aggregate(average("stress"))
             .get();
+
     return DayProgressData(
       data: dataPoints,
       averageScore: averageScore.getAverage("stress")!,
@@ -93,14 +94,6 @@ class _ProgressScreenState extends State<ProgressScreen> {
     return dates;
   }
 
-  void setProgressData(Date date) async {
-    final data = await fetchProgressData(date);
-
-    setState(() {
-      _data = data;
-    });
-  }
-
   void setData() async {
     final dates = await fetchDatesData();
     final data = await fetchProgressData(dates.last);
@@ -122,7 +115,9 @@ class _ProgressScreenState extends State<ProgressScreen> {
   @override
   Widget build(BuildContext context) {
     final date =
-        _dates == null || _dateIndex == null
+        _dates == null ||
+                _dateIndex == null ||
+                _dates!.isEmpty
             ? null
             : _dates!.elementAt(_dateIndex!);
     final formatter = DateFormat.yMd();
@@ -137,7 +132,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16.0,
@@ -230,9 +225,12 @@ class _ProgressScreenState extends State<ProgressScreen> {
             alignment: Alignment.bottomCenter,
             child: Sheet(
               fit: SheetFit.expand,
-              initialExtent: 320,
-              minExtent: 320,
-              child: AnalysisSheetContent(data: _data?.data),
+              initialExtent: 310,
+              minExtent: 310,
+              maxExtent: 310,
+              child: AnalysisSheetContent(
+                data: _data?.data,
+              ),
             ),
           ),
         ],

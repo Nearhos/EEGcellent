@@ -1,4 +1,4 @@
-package com.example.eegcellent
+package com.eegcellent.gauge
 
 import io.flutter.embedding.android.FlutterActivity
 

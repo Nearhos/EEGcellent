@@ -1,8 +1,9 @@
-import 'package:eegcellent/screens/main_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:gauge/screens/main_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'firebase_options.dart';
 
 final colorScheme = ColorScheme.fromSeed(
@@ -33,11 +34,15 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  flutterLocalNotificationsPlugin
+  final bool? result = await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin
-      >()!
-      .requestNotificationsPermission();
+        IOSFlutterLocalNotificationsPlugin
+      >()
+      ?.requestPermissions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
   // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
   const AndroidInitializationSettings
   initializationSettingsAndroid =
@@ -52,8 +57,8 @@ void main() async {
   final WindowsInitializationSettings
   initializationSettingsWindows =
       WindowsInitializationSettings(
-        appName: 'EEGcellent',
-        appUserModelId: 'com.eegcellent.eegcellent',
+        appName: 'Gauge',
+        appUserModelId: 'com.gauge.gauge',
         // Search online for GUID generators to make your own
         guid: '793fb8ed-0807-4324-835f-56b93aeece90',
       );
@@ -83,7 +88,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'EEGcellent',
+      title: 'Gauge',
       theme: ThemeData(
         colorScheme: colorScheme,
         textTheme: GoogleFonts.firaSansTextTheme().copyWith(

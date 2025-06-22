@@ -1,4 +1,4 @@
-# eegcellent
+# gauge
 
 A new Flutter project.
 

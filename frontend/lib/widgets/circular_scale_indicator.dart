@@ -17,7 +17,7 @@ class CircularScaleIndicator extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: AspectRatio(
-        aspectRatio: 1.15,
+        aspectRatio: 1.25,
         child: Stack(
           children: [
             Container(

@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "545817570266",
-    "project_id": "eegcellent",
-    "storage_bucket": "eegcellent.firebasestorage.app"
+    "project_number": "1020768668022",
+    "project_id": "gauge-31025",
+    "storage_bucket": "gauge-31025.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:545817570266:android:bd4a0a3ac194c3aeac2ee3",
+        "mobilesdk_app_id": "1:1020768668022:android:c8008a8281fd0d89eb9257",
         "android_client_info": {
-          "package_name": "com.example.eegcellent"
+          "package_name": "com.eegcellent.gauge"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDrQtqqhD-Ia4JoLBja6JLP-vsLw-eYpzU"
+          "current_key": "AIzaSyBg9grkCi6Nn8tzKWTesAMIx4iX5lnd0HI"
         }
       ],
       "services": {

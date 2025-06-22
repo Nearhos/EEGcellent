@@ -1,6 +1,6 @@
-import 'package:eegcellent/models/data_point.dart';
-import 'package:eegcellent/widgets/analysis_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:gauge/models/data_point.dart';
+import 'package:gauge/widgets/analysis_chart.dart';
 
 class AnalysisSheetContent extends StatelessWidget {
   final List<DataPoint>? data;
