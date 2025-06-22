@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gauge - Real-time EEG Stress Detection For Productivity</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Gauge</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#problem" class="nav-link">Problem</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#solution" class="nav-link">Solution</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#features" class="nav-link">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Real-time EEG Stress Detection</h1>
+                <p class="hero-subtitle">Monitor your stress levels in real-time using advanced EEG technology and machine learning</p>
+                <div class="hero-buttons">
+                    <a href="#solution" class="btn btn-primary">Learn More</a>
+                    <a href="#demo" class="btn btn-secondary">Try Demo</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="eeg-visualization">
+                    <img src="chaotic_eeg.gif" alt="EEG Visualization">
+                    <div class="stress-indicator">
+                        <div class="stress-level">
+                            <span class="stress-text">Stress Level</span>
+                            <div class="stress-bar">
+                                <div class="stress-fill" id="stressFill"></div>
+                            </div>
+                            <span class="stress-percentage" id="stressPercentage">23%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="problem">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Problem</h2>
+                <p>Understanding the challenges of stress monitoring</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Complex Brain Signals</h3>
+                    <p>Electroencephalography (EEG) signals are complex and require sophisticated analysis to extract meaningful stress indicators from the noise.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Real-time Processing</h3>
+                    <p>Traditional stress detection methods are slow and don't provide immediate feedback when stress levels change and how they impact productivity during task requring signifigant concentration like studying.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Accuracy Issues</h3>
+                    <p>Many stress detection systems lack the accuracy needed for reliable readings. Our SVM-based algorithm has achived 97% in similar studies.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Accessibility</h3>
+                    <p>Professional EEG equipment is expensive and not accessible for everyday stress monitoring at home or work. We aim to develpe a discrete and wearble EEG headset in the form of headphones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="solution">
+        <div class="container">
+            <div class="solution-content">
+                <div class="solution-text">
+                    <h2>Our Solution</h2>
+                    <p>Gauge combines cutting-edge EEG technology with advanced machine learning algorithms to provide real-time, accurate stress detection.</p>
+                    <div class="solution-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Real-time stress level monitoring</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced machine learning algorithms</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Portable and wireless EEG sensors</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Mobile app integration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="solution-image">
+                    <div class="device-mockup">
+                        <div class="device-screen">
+                            <div class="app-interface">
+                                <div class="app-header">
+                                    <h3>Gauge</h3>
+                                    <div class="connection-status">
+                                        <i class="fas fa-wifi"></i>
+                                    </div>
+                                </div>
+                                <div class="stress-display">
+                                    <div class="stress-circle">
+                                        <svg viewBox="0 0 120 120">
+                                            <circle cx="60" cy="60" r="50" fill="none" stroke="#e0e0e0" stroke-width="8"/>
+                                            <circle cx="60" cy="60" r="50" fill="none" stroke="#4CAF50" stroke-width="8" 
+                                                    stroke-dasharray="314" stroke-dashoffset="188" class="stress-progress"/>
+                                        </svg>
+                                        <div class="stress-value">40%</div>
+                                    </div>
+                                    <p>Current Stress Level</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="headset.gif" alt="EEG Headset Animation" class="solution-gif" style="margin-top: 2rem;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Key Features</h2>
+                <p>Gauge what makes Gauge unique</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Neural Processing</h3>
+                    <p>Advanced Algorithms process EEG signals in real-time to detect stress patterns with high accuracy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Comprehensive analytics and insights into your stress patterns over time with detailed reports.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Smart Alerts</h3>
+                    <p>Receive notifications when stress levels exceed healthy thresholds with personalized recommendations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Team Monitoring</h3>
+                    <p>Monitor stress levels across teams and organizations for better workplace wellness management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="demo-content">
+                <h2>Try Our Demo</h2>
+                <p>Experience real-time stress detection with our interactive demo</p>
+                <div class="demo-interface">
+                    <div class="eeg-inputs">
+                        <h3>EEG Channel Inputs</h3>
+                        <div class="input-group">
+                            <label for="tp9">TP9:</label>
+                            <input type="range" id="tp9" min="0" max="1" step="0.01" value="0.1">
+                            <span class="input-value" id="tp9Value">0.10</span>
+                        </div>
+                        <div class="input-group">
+                            <label for="af7">AF7:</label>
+                            <input type="range" id="af7" min="0" max="1" step="0.01" value="0.15">
+                            <span class="input-value" id="af7Value">0.15</span>
+                        </div>
+                        <div class="input-group">
+                            <label for="af8">AF8:</label>
+                            <input type="range" id="af8" min="0" max="1" step="0.01" value="0.12">
+                            <span class="input-value" id="af8Value">0.12</span>
+                        </div>
+                        <div class="input-group">
+                            <label for="tp10">TP10:</label>
+                            <input type="range" id="tp10" min="0" max="1" step="0.01" value="0.14">
+                            <span class="input-value" id="tp10Value">0.14</span>
+                        </div>
+                        <div class="input-group">
+                            <label for="frontal">Frontal Asymmetry:</label>
+                            <input type="range" id="frontal" min="0" max="1" step="0.01" value="0.08">
+                            <span class="input-value" id="frontalValue">0.08</span>
+                        </div>
+                        <div class="input-group">
+                            <label for="temporal">Temporal Asymmetry:</label>
+                            <input type="range" id="temporal" min="0" max="1" step="0.01" value="0.09">
+                            <span class="input-value" id="temporalValue">0.09</span>
+                        </div>
+                    </div>
+                    <div class="stress-result">
+                        <h3>Stress Prediction</h3>
+                        <div class="stress-display-demo">
+                            <div class="stress-circle-demo">
+                                <svg viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="50" fill="none" stroke="#e0e0e0" stroke-width="8"/>
+                                    <circle cx="60" cy="60" r="50" fill="none" stroke="#4CAF50" stroke-width="8" 
+                                            stroke-dasharray="314" stroke-dashoffset="314" id="stressProgress"/>
+                                </svg>
+                                <div class="stress-value-demo" id="stressValue">0%</div>
+                            </div>
+                            <p id="stressLabel">Low Stress</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Ready to revolutionize stress monitoring?</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@gauge.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (416) 871-6136</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Waterloo, ON</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Gauge</h3>
+                    <p>Revolutionizing stress monitoring with advanced EEG technology and machine learning.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#problem">Problem</a></li>
+                        <li><a href="#solution">Solution</a></li>
+                        <li><a href="#features">Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>info@gauge.com</li>
+                        <li>+1 (416) 871-6136</li>
+                        <li>Waterloo, ON</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Gauge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
